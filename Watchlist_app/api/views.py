@@ -13,7 +13,7 @@ from Watchlist_app.api.throttling import ReviewCreateThrottle, ReviewlistThrottl
 from Watchlist_app.api.pagination import WatchlistPagination
 
 
-     # REVIEW CREATE CLASS
+     # REVIEW CREATE 
 class reviewcreate(generics.CreateAPIView):
     serializer_class = ReviewSerializer
     throttle_classes = [ReviewCreateThrottle]
@@ -37,7 +37,7 @@ class reviewcreate(generics.CreateAPIView):
 
 
 
-         # REVIEW LIST CLASS
+         # REVIEW LIST 
 class reviewlist(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -49,7 +49,7 @@ class reviewlist(generics.ListCreateAPIView):
         return Review.objects.filter(watchlist=pk)
 
 
-       # REVIEW DETAIL CLASS
+       # REVIEW DETAIL 
 class reviewdetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
@@ -92,7 +92,7 @@ class watchdetailAPI(APIView):
     
 
 
-       # STREAMPLATFORM CLASS
+       # STREAMPLATFORM 
 class streamplatformAPI(APIView):
     throttle_classes = [AnonRateThrottle]
     def get(self,request):
@@ -111,7 +111,7 @@ class streamplatformAPI(APIView):
         
 
 
-       # STREAM PLATFORM DETAIL CLASS
+       # STREAM PLATFORM DETAIL 
 class streamplatformdetailAPI(APIView):
     throttle_classes = [AnonRateThrottle]
     def get(self,request,pk):
@@ -129,6 +129,7 @@ class streamplatformdetailAPI(APIView):
         else:
             return Response(serializer.errors)
         
+
 
     def delete(self,request, pk):
         watch = Streamplatform.objects.get(pk=pk)
